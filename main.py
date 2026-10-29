@@ -1,5 +1,5 @@
 # Importar
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 
 app = Flask(__name__)
@@ -15,8 +15,7 @@ def result_calculate(size, lights, device):
 @app.route('/')
 def index():
     return render_template('index.html')
-
-# La segunda página
+# Segunda página
 @app.route('/<size>')
 def lights(size):
     return render_template(
@@ -28,7 +27,7 @@ def lights(size):
 @app.route('/<size>/<lights>')
 def electronics(size, lights):
     return render_template(
-                            'electronics.html',
+                            'electronics.html',                           
                             size = size, 
                             lights = lights                           
                            )
@@ -42,6 +41,25 @@ def end(size, lights, device):
                                                     int(device)
                                                     )
                         )
+# El formulario
+@app.route('/submit', methods=['POST'])
+def submit_form():
+    # SOLUCIÓN AL 'NONE': Asegúrate de capturar los nombres correctos del formulario
+    # Si sigue saliendo None, revisa que en tu formulario HTML diga name="nombre"
+    nombre = request.form.get('nombre') or request.form.get('name') or "No proporcionado"
+    email = request.form.get('email') or request.form.get('correo') or "No proporcionado"
+    address = request.form.get('address') or request.form.get('direccion') or "No proporcionado"
+    date = request.form.get('date') or request.form.get('fecha') or "No proporcionado"
+
+  
+    with open("usuarios.txt", "a", encoding="utf-8") as archivo:
+        archivo.write(f"Usuario: {nombre} | Correo: {email} | Dirección: {address} | Fecha: {date}\n")
+
+
+    return render_template('form_result.html', 
+                           name=nombre, 
+                           email=email, 
+                           address=address, 
+                           date=date)
+
 app.run(debug=True)
-
-

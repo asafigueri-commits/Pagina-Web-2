@@ -1,0 +1,52 @@
+<!-- Crear una página que emita los datos del usuario -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados del formulario</title>
+    
+    <style>
+        /* Estilos de tamaño y tipografía */
+        h1 {
+            font-size: 28px;
+            font-weight: bold;
+            color: #000000;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 16px;
+            margin: 12px 0;
+            font-weight: 500;
+        }
+
+        /* Clases específicas para los colores de cada línea */
+        .color-nombre {
+            color: #3c3c3c; /* Gris oscuro */
+        }
+
+        .color-correo {
+            color: #58001a; /* Guinda / Rojo vino */
+        }
+
+        .color-direccion {
+            color: #5c4018; /* Café / Dorado */
+        }
+
+        .color-fecha {
+            color: #6d1d2d; /* Granate / Rojizo */
+        }
+    </style>
+</head>
+<body>
+    {% block content %}
+    <h1>Gracias por rellenar el formulario.</h1>
+    <p class="color-nombre">Tu nombre: {{ name }}</p>
+    <p class="color-correo">Tu email: {{ email }}</p>
+    <p class="color-direccion">Su dirección: {{ address }}</p>
+    <p class="color-fecha">Tu fecha: {{ date }}</p>
+    {% endblock %}
+</body>
+</html>
