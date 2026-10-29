@@ -44,8 +44,7 @@ def end(size, lights, device):
 # El formulario
 @app.route('/submit', methods=['POST'])
 def submit_form():
-    # SOLUCIÓN AL 'NONE': Asegúrate de capturar los nombres correctos del formulario
-    # Si sigue saliendo None, revisa que en tu formulario HTML diga name="nombre"
+
     nombre = request.form.get('nombre') or request.form.get('name') or "No proporcionado"
     email = request.form.get('email') or request.form.get('correo') or "No proporcionado"
     address = request.form.get('address') or request.form.get('direccion') or "No proporcionado"
