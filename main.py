@@ -42,23 +42,31 @@ def end(size, lights, device):
                                                     )
                         )
 # El formulario
+@app.route('/form')
+def form():
+    return render_template('form.html')
+
+#Resultados del formulario
 @app.route('/submit', methods=['POST'])
 def submit_form():
+    # Declarar variables para la recogida de datos
+    name = request.form['name']
+    email = request.form['email']
+    date = request.form['date']
+    address = request.form['address']
 
-    nombre = request.form.get('nombre') or request.form.get('name') or "No proporcionado"
-    email = request.form.get('email') or request.form.get('correo') or "No proporcionado"
-    address = request.form.get('address') or request.form.get('direccion') or "No proporcionado"
-    date = request.form.get('date') or request.form.get('fecha') or "No proporcionado"
-
-  
-    with open("usuarios.txt", "a", encoding="utf-8") as archivo:
-        archivo.write(f"Usuario: {nombre} | Correo: {email} | Dirección: {address} | Fecha: {date}\n")
-
+    with open('usuarios.txt', 'a', encoding='utf-8') as f:
+        f.write(f"Nombre: {name}\n")
+        f.write(f"Email: {email}\n")
+        f.write(f"Fecha: {date}\n")
+        f.write(f"Dirección: {address}\n")
 
     return render_template('form_result.html', 
-                           name=nombre, 
-                           email=email, 
-                           address=address, 
-                           date=date)
+                           name=name,
+                           email=email,
+                           date=date,
+                           address=address
+                           )
 
-app.run(debug=True)
+if __name__ == '__main__':
+    app.run(debug=True)

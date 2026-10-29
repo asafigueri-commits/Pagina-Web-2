@@ -41,12 +41,14 @@
     </style>
 </head>
 <body>
-    {% block content %}
-    <h1>Gracias por rellenar el formulario.</h1>
+ {% block content %}
+  <h1>Gracias por rellenar el formulario.</h1>
     <p class="color-nombre">Tu nombre: {{ name }}</p>
     <p class="color-correo">Tu email: {{ email }}</p>
     <p class="color-direccion">Su dirección: {{ address }}</p>
     <p class="color-fecha">Tu fecha: {{ date }}</p>
     {% endblock %}
 </body>
+
 </html>
+
